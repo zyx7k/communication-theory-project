@@ -8,6 +8,6 @@ function out = channel_with_memory(in,a,b)
     filt_out = conv(ch_filt,in);
 
     for k = 1:length(in)
-        out(k) = filt_out(k) + randn; 
+        out(k) = filt_out(k) + 0.1*randn; 
     end
 end
