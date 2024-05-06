@@ -5,10 +5,10 @@ function lineDecodedSignal = lineDecoding(demodulatedSignal)
     % So we will sample at every 9th sample every 33th sample
 
     N = length(demodulatedSignal);
-    N = N/33;
+    N = floor(N/33);
     lineDecodedSignal = ones(1, N);
 
-    for k = 0 : N-1
+    for k = 1 : N
         sampledValue = demodulatedSignal(33*k+9);
         if(sampledValue<0)
             lineDecodedSignal(k) = -1;
