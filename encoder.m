@@ -1,4 +1,6 @@
 function [inPhaseComponent, quadraturePhaseComponent] = encoder(digitalBits)
+    
+    % Adding a zero at the end in case there are no even number of bits
     N = length(digitalBits);
     if(mod(N,2)~=0)
         digitalBits = horzcat(digitalBits, 0);

@@ -15,12 +15,12 @@ function lineCodedSignal = lineCoding(encodedSignal)
 
     lineCodedSignal = conv(upsampledSignal, rc_filter_normalized);
 
-    % figure(2);
-    % subplot(3,1,1);
-    % stem(encodedSignal);
-    % subplot(3,1,2);
-    % stem(upsampledSignal);
-    % subplot(3,1,3);
-    % plot(lineCodedSignal);
+    figure(2);
+    subplot(3,1,1);
+    stem(encodedSignal);
+    subplot(3,1,2);
+    stem(upsampledSignal);
+    subplot(3,1,3);
+    plot(lineCodedSignal);
 
 end
