@@ -1,5 +1,5 @@
 function out = channel_with_memory(in,a,b)
-    fs = 4800; %for the given project.wav file
+    fs = 48000; %for the given project.wav file
     Tb = 6.5104e-07; %need to change, according to line coding
     t = 0:1/fs:length(in)/fs;
     out = zeros(1,length(in));
@@ -8,6 +8,6 @@ function out = channel_with_memory(in,a,b)
     filt_out = conv(ch_filt,in);
 
     for k = 1:length(in)
-        out(k) = filt_out(k) + randn; 
+        out(k) = filt_out(k) + 0.1*randn; 
     end
 end
