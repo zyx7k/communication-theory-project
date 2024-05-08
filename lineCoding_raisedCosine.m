@@ -1,4 +1,4 @@
-function lineCodedSignal = lineCoding(encodedSignal)
+function lineCodedSignal = lineCoding_raisedCosine(encodedSignal)
 
     % Upsample by the length of the filter for no ISI
     upsampledSignal = upsample(encodedSignal, 17);
