@@ -1,20 +1,21 @@
 function analogSignal = d2a(digitalSignal)
-    % analogSignal = analogSignal/(2*max(analogSignal));
-    % precision = 4;
-    % codeword = [-0.5 : 10^(-precision) : 0.5];
-    % quantizedArray = interp1(codeword, codeword, analogSignal, 'nearest', 'extrap');
-    % quantizedArray = quantizedArray + 0.5;
-    % quantizedArray = quantizedArray * 10^(precision);
-    % minDigits = ceil(precision/log10(2));
-    % digitalSignal = dec2bin(quantizedArray, minDigits);
-    
-    decimalArary = [];
-    for k = 1 : length(digitalSignal)
-        value = fix(digitalSignal(k)*10000)/10000; %upto 4 decimal places
-        decimalArary = [decimalArary, bin2dec(value)];
-    end
-    
-    decimalArary = decimalArary/10000;
-    
+
+stereoAudio = audioread("project.wav");
+monoAudio = stereoAudio(:,1)'; % monoAudio is now a row vector
+maxAmplitude = max(monoAudio);
+
+N = length(digitalSignal) / 14; % Number of symbols
+decimalArray = zeros(1, N); % Preallocation for speed
+
+% Reshape the 1D digital signal into a matrix where each row has 14 bits
+binaryMatrix = reshape(digitalSignal, 14, N)';
+
+% Convert each binary row to a decimal number
+powersOfTwo = 2.^(13:-1:0);  % Array of powers of two
+decimalArray = binaryMatrix * powersOfTwo';
+
+% Scale the decimal array to match the original analog scaling
+decimalArray = (decimalArray / 10^4) - 0.5;
+analogSignal = decimalArray * (2 * maxAmplitude);
 
 end

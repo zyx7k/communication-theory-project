@@ -11,8 +11,8 @@ function lineCodedSignal = lineCoding_raisedCosine(encodedSignal)
     [rc_filter, ~] = raised_cosine(rolloff_factor, samples_per_symbol, filter_span_in_symbols);
     rc_filter_normalized = rc_filter / max(rc_filter);
 
-    % figure(1);
-    % plot(rc_filter);
+    %figure(1);
+    %plot(rc_filter);
 
     lineCodedSignal = conv(upsampledSignal, rc_filter_normalized);
 
