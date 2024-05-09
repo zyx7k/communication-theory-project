@@ -7,6 +7,6 @@ function out = demodulate(in)
         out{2}(count) = in(count).*sin(2*pi*fc*t(count));
     end
 
-    out{1} = lowpass(out{1},fc/100,fs);
-    out{2} = lowpass(out{2},fc/100,fs);
+    out{1} = lowpass(out{1},50,fs);
+    out{2} = lowpass(out{2},50,fs);
 end
