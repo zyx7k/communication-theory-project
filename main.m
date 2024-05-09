@@ -15,7 +15,8 @@ lineCoded_sig{2} = lineCoding_raisedCosine(encoded_sig{2});
 modulated_sig = modulate(lineCoded_sig);
 
 % Adding Channel Noise
-rx_sig = channel_memoryless(modulated_sig);
+sigma = 0.1; % Vary from 0 to 1 
+rx_sig = channel_memoryless(modulated_sig, sigma);
 
 % Demodulation 
 demod_sig = demodulate(rx_sig);

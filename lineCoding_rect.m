@@ -6,17 +6,17 @@ function lineCodedSignal = lineCoding_rect(encodedSignal)
     % Create Rectangular filter of length 17
     rect_filter = ones(1,17);
 
-    figure(1);
-    plot(rect_filter);
+    % figure(1);
+    % plot(rect_filter);
 
     lineCodedSignal = conv(upsampledSignal, rect_filter);
 
-    figure(2);
-    subplot(3,1,1);
-    stem(encodedSignal);
-    subplot(3,1,2);
-    stem(upsampledSignal);
-    subplot(3,1,3);
-    plot(lineCodedSignal);
+    % figure(2);
+    % subplot(3,1,1);
+    % stem(encodedSignal);
+    % subplot(3,1,2);
+    % stem(upsampledSignal);
+    % subplot(3,1,3);
+    % plot(lineCodedSignal);
 
 end
