@@ -6,7 +6,7 @@ function lineDecodedSignal = lineDecoding(demodulatedSignal)
     N = (N-16)/17;
     lineDecodedSignal = ones(1, N);
 
-    for k = 0 : N-1
+    for k = 1 : N
         sampledValue = demodulatedSignal(17*k+9);
         if(sampledValue<0)
             lineDecodedSignal(k) = -1;

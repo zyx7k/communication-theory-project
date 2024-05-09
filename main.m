@@ -28,5 +28,4 @@ decoded_sig{2} = lineDecoding(demod_sig{2});
 % Decoder
 digits = decoder(decoded_sig{1},decoded_sig{2});
 
-time_vec = 0:1/(10^3):length(modulated_sig)/(10^3);
-time_vec = time_vec(1:end-1);
+out = d2a(digits);
