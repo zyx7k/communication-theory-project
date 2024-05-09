@@ -8,8 +8,8 @@ encoded_sig = cell(1,2); % preallocating a cell for inPhase component and quadra
 
 lineCoded_sig = cell(1,2); % preallocating a cell for inPhase lineCodin and quadrature phase lineCoding
 % LineCoding using raised Cosine
-lineCoded_sig{1} = lineCoding_raisedCosine(encoded_sig{1});
-lineCoded_sig{2} = lineCoding_raisedCosine(encoded_sig{2});
+lineCoded_sig{1} = lineCoding_rect(encoded_sig{1});
+lineCoded_sig{2} = lineCoding_rect(encoded_sig{2});
 
 % Modulation
 modulated_sig = modulate(lineCoded_sig);
