@@ -28,28 +28,25 @@ lineCoded_sig{2} = lineCoding_rect(encoded_sig{2});
 modulated_sig = modulate(lineCoded_sig);
 
 % Noise Parameter
-sigma = 0.001; % Vary from 0 to 1
+sigma = 0.01; % Vary from 0 to 1
 
 % Adding Channel Noise: Memoryless
-%rx_sig = channel_memoryless(modulated_sig, sigma);
+rx_sig = channel_memoryless(modulated_sig, sigma);
 
 % Adding Channel Noise: Memory
-a = 1;
-b = 1;
-rx_sig = channel_with_memory(modulated_sig, a, b, sigma);
+% a = 0.8;
+% b = 1;
+% rx_sig = channel_with_memory(modulated_sig, a, b, sigma);
 
 % Demodulation 
 demod_sig = demodulate(rx_sig);
 
-% Scatter Plot after Channel
-% figure(2)
-% scatter(demod_sig{1}, demod_sig{2});
+% Scatter Plot after Channelfigure(2)
+% scatter(demod_sig{1}(1:10000), demod_sig{2}(1:10000));
 % xlabel('In-Phase Values');
 % ylabel('Quad-Phase Values');
-% title('Constellation Diagram after Memory Channel');
+% title('Constellation Diagram after Memoryless Channel');
 % grid on;
-
-
 
 % Line Decoding
 decoded_sig = cell(1,2);
