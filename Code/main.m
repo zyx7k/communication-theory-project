@@ -16,15 +16,40 @@ lineCoded_sig = cell(1,2); % preallocating a cell for inPhase lineCodinand quadr
 lineCoded_sig{1} = lineCoding_rect(encoded_sig{1});
 lineCoded_sig{2} = lineCoding_rect(encoded_sig{2});
 
+% Scatter Plot before Channel
+% figure(1)
+% scatter(lineCoded_sig{1}, lineCoded_sig{2});
+% xlabel('In-Phase Values');
+% ylabel('Quad-Phase Values');
+% title('Constellation Diagram before Channel');
+% grid on;
+
 % Modulation
 modulated_sig = modulate(lineCoded_sig);
 
-% Adding Channel Noise
-sigma = 0.15; % Vary from 0 to 1 
-rx_sig = channel_memoryless(modulated_sig, sigma);
+% Noise Parameter
+sigma = 0.001; % Vary from 0 to 1
+
+% Adding Channel Noise: Memoryless
+%rx_sig = channel_memoryless(modulated_sig, sigma);
+
+% Adding Channel Noise: Memory
+a = 1;
+b = 1;
+rx_sig = channel_with_memory(modulated_sig, a, b, sigma);
 
 % Demodulation 
 demod_sig = demodulate(rx_sig);
+
+% Scatter Plot after Channel
+% figure(2)
+% scatter(demod_sig{1}, demod_sig{2});
+% xlabel('In-Phase Values');
+% ylabel('Quad-Phase Values');
+% title('Constellation Diagram after Memory Channel');
+% grid on;
+
+
 
 % Line Decoding
 decoded_sig = cell(1,2);
@@ -44,6 +69,7 @@ for k = 1 : N
         differences = differences + 1;
     end
 end
+
 p_e = differences/N;
 fprintf('The Probability of error for sigma = %d is %d\n', sigma, p_e);
 

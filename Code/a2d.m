@@ -19,4 +19,12 @@ digitalSignal = reshape(binaryStrings' - '0', 1, []);
 
 % This results in a single row vector of bits that represents the digital signal
 
+% For Plotting
+% stem(digitalSignal);
+% xlabel('Sample Number');
+% ylabel('Bit Value');
+% title('Output of A/D converter for values: [0.1234, -0.4321, 1]');
+
+% debug: disp(digitalSignal);
+
 end
