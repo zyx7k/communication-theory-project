@@ -9,22 +9,24 @@ function [inPhaseComponent, quadraturePhaseComponent] = encoder(digitalBits)
     
     inPhaseComponent = [];
     quadraturePhaseComponent = [];
+    
+    a = 1; % Change according to needs
 
     for k = 1 : N/2
         bit1 = digitalBits(2*k-1);
         bit2 = digitalBits(2*k);
         if(bit1 == 0 && bit2 ==0)
-            ak = 1;
-            bk = 1;
+            ak = a;
+            bk = a;
         elseif(bit1==1 && bit2==0)
-            ak = -1;
-            bk = 1;
+            ak = -a;
+            bk = a;
         elseif(bit1==0 && bit2==1)
-            ak = 1;
-            bk = -1;
+            ak = a;
+            bk = -a;
         else
-            ak = -1;
-            bk = -1;
+            ak = -a;
+            bk = -a;
         end
         
         inPhaseComponent = [inPhaseComponent, ak];
