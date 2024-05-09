@@ -1,5 +1,5 @@
 function mod_sig = modulate(sig)
-    fc = 100;
+    fc = 10^6;
     fs = 10*fc;
     t = 0:1/fs:(length(sig{1})/fs);
     Tb = 17;

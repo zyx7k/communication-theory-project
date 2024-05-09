@@ -7,15 +7,20 @@ encoded_sig = cell(1,2); % preallocating a cell for inPhase component and quadra
 [encoded_sig{1},encoded_sig{2}] = encoder(digitalBits);
 
 lineCoded_sig = cell(1,2); % preallocating a cell for inPhase lineCodinand quadrature phase lineCoding
+
 % LineCoding using raised Cosine
-lineCoded_sig{1} = lineCoding_raisedCosine(encoded_sig{1});
-lineCoded_sig{2} = lineCoding_raisedCosine(encoded_sig{2});
+% lineCoded_sig{1} = lineCoding_raisedCosine(encoded_sig{1});
+% lineCoded_sig{2} = lineCoding_raisedCosine(encoded_sig{2});
+
+% LineCoding using rectangular
+lineCoded_sig{1} = lineCoding_rect(encoded_sig{1});
+lineCoded_sig{2} = lineCoding_rect(encoded_sig{2});
 
 % Modulation
 modulated_sig = modulate(lineCoded_sig);
 
 % Adding Channel Noise
-sigma = 0.1; % Vary from 0 to 1 
+sigma = 0.15; % Vary from 0 to 1 
 rx_sig = channel_memoryless(modulated_sig, sigma);
 
 % Demodulation 
@@ -40,7 +45,7 @@ for k = 1 : N
     end
 end
 p_e = differences/N;
-disp(p_e);
+fprintf('The Probability of error for sigma = %d is %d\n', sigma, p_e);
 
 % Write the audio file
 audiowrite("outputtest.wav", out, Fs);
