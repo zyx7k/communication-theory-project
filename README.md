@@ -11,6 +11,20 @@ The system is as follows :
 
 The included code can be used for simulating mono audio through a QPSK system without much modifications. Stereo Audio can be simulated by separating each channel into its own vector and then combining the resulting vectors into a single matrix for stereo audio.
 
+The code can implement line coding using raised cosine pulses and rectangular pulses using the functions lineCoding_raisedCosine.m and lineCoding_rect.m
+
+The encoder is setup to implement gray coding and the decoder to do the reverse of it.
+
 The default noise PSD used here is 0.01, which can be modified in channel_memoryless.m and channel_with_memory.m
 
 Energy distribution for impulses in the channel with memory can also be varied using two scaling parameters 'a' and 'b' in channel_with_memory.m
+
+The D/A converter uses 14 bits per sample, this can be varied in the file d2a.m
+
+The function snr_pe_calc.m is used to generate Probability of Error vs SNR plots.
+
+main.m tests all the blocks as mentioned in the block diagram and can be modified for use.
+
+Included files project.wav was the original stereo audio which after being simulated through this QPSK system was received as test_out.wav (mono audio)
+
+The included project report can be used to further understand and verify functionality of the code as it includes plots for each stages outputs and further explanation of how the system is supposed to function
